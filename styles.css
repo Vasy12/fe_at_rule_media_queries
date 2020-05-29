@@ -1,23 +1,98 @@
-@import "assets/css/reset.css";
-@import "assets/css/fonts.css";
+/*
+clip-path: polygon(0 0, 100% 0%, 100% 80%, 0% 100%);
 
-div {
-    font-family: "Open Sans", sans-serif;
+*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    --background-value: linear-gradient(to bottom, #ffe76c, #ff5555);
+    min-height: 200vh;
+    background-image: var(--background-value);
+    background-position: top 0;
+    background-size: 100vw 100vh;
+    background-attachment: fixed;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.profile-card {
     margin: 20px;
-    font-size: 4em;
+    --picture-size: 200px;
+    width: 320px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
 }
 
-div:nth-child(1) {
-    font-weight: 400;
-    font-style: italic;
+.full-name {
+    font-size: 2em;
+    color: #1e1e1e;
+    font-family: sans-serif;
+    text-align: center;
 }
-div:nth-child(2) {
-    font-weight: 700;
-    font-style: italic;
+
+.profile-picture-wrapper {
+    --clip-path-value: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-image: var(--background-value);
+    background-attachment: fixed;
+    width: var(--picture-size);
+    height: var(--picture-size);
+    clip-path: var(--clip-path-value);
 }
-div:nth-child(3) {
-    font-weight: 400;
+
+.clipped-image {
+    width: calc(var(--picture-size) - 20px);
+    height: calc(var(--picture-size) - 20px);
+
+    object-fit: cover;
+    clip-path: var(--clip-path-value);
 }
-div:nth-child(4) {
-    font-weight: 700;
+
+.profile-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
+
+
+/*
+============================
+*/
+
+
+
+@media screen and (orientation: portrait) {
+    .profile-card {
+        margin-top: calc(var(--picture-size) / 2);
+        flex-direction: column;
+    }
+
+    .profile-picture-wrapper {
+        margin-top: calc(var(--picture-size) / -2);
+    }
+}
+
+
+@media screen and (orientation: landscape) {
+
+    .profile-card {
+        margin-left: calc(var(--picture-size) / 2);
+        flex-direction: row;
+    }
+
+    .profile-picture-wrapper {
+        margin-left: calc(var(--picture-size) / -2);
+    }
+}
+
+
